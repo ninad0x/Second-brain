@@ -72,9 +72,9 @@ app.post("/api/v1/content", userMiddlware, async (req, res) => {
         title,
         link,
         type,
+        tags: [],
         // @ts-ignore
         userId: req.userId,
-        tags: []
     })
 
     res.status(200).json({
