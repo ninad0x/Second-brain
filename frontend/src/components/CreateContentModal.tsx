@@ -15,14 +15,20 @@ export function CreateContentModal({open, onClose}: ModalProps) {
 
     const titleRef = useRef<HTMLInputElement>();
     const linkRef = useRef<HTMLInputElement>();
+    const typeRef = useRef<HTMLInputElement>();
 
     async function addContent() {
         const title = titleRef.current?.value
         const link = linkRef.current?.value;
+        const type = typeRef.current?.value;
+        
+        // format youtube URL
+        link?.replace("watch?v", "embed/").replace("youtu.be","youtube").replace("?si","")
 
         await axios.post(`${BACKEND_URL}/content`, {
             title,
-            link
+            link,
+            type
         },{
             headers: {
                 "Authorization": localStorage.getItem("token")
@@ -41,6 +47,7 @@ export function CreateContentModal({open, onClose}: ModalProps) {
                 <div className="w-full">
                     <Input reference={titleRef} placeholder={"Title"}/>
                     <Input reference={linkRef} placeholder={"Link"}/>
+                    <Input reference={typeRef} placeholder={"Type"}/>
                 </div>
 
                 <div className="flex justify-between m-2">
