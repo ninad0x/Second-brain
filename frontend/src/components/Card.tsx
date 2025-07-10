@@ -8,7 +8,7 @@ interface CardProps {
 }
 
 export function Card({title, link, type}: CardProps) {
-    return <div className="cursor-pointer min-h-40 min-w-72 bg-white rounded-xl border border-gray-200 p-4 max-w-96">
+    return <div className="cursor-pointer min-w-72 bg-white rounded-xl border border-gray-200 p-4 max-w-96">
         <div className="main flex justify-between p-2">
 
             <div className="flex gap-4 items-center text-md text-gray-700">

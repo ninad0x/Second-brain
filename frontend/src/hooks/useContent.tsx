@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 
@@ -6,8 +6,8 @@ import axios from "axios";
 export function useContent() {
     const [contents, setContents] = useState([])
 
-    useEffect(() => {
-        axios.get(`${BACKEND_URL}/content`, {
+    async function refreshFeed() {
+        await axios.get(`${BACKEND_URL}/content`, {
             headers: {
                 "Authorization": localStorage.getItem("token")
             }
@@ -15,8 +15,18 @@ export function useContent() {
         .then((response) => {
             setContents(response.data.content)
         })
-        
-    }, [])
+    }
 
-    return contents;
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         refreshFeed();
+    //     }, 10 * 1000)
+
+    //     return () => {
+    //         clearInterval(interval)
+    //     }
+        
+    // }, [])
+
+    return { contents, refreshFeed };
 }
