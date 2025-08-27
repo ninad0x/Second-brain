@@ -48,8 +48,8 @@ export function Dashboard() {
           </div>
       
           <div className='flex gap-4 flex-wrap'>
-            {/* <Card type='youtube' title='First video' link="https://www.youtube.com/embed/Nd6yqH2GFWU?si=GAXVfjHLimgDA6K2"/>  
-            <Card type='twitter' title='First Tweet' link="933354946111705097"/>   */}
+            <Card type='youtube' title='First video' link="https://www.youtube.com/embed/fG0K3wx64QY"/>  
+            {/* <Card type='twitter' title='First Tweet' link="933354946111705097"/>   */}
 
             {contents.map(
               ({title, type, link}) => <Card 
