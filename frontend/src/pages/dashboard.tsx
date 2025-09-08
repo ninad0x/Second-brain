@@ -10,6 +10,7 @@ import { useContent } from '../hooks/useContent'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
 
+
 export function Dashboard() {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -25,7 +26,7 @@ export function Dashboard() {
     });
 
     
-    // console.log(response.data.message);
+    console.log(response.data.message);
     navigator.clipboard.writeText(`${BACKEND_URL}/brain/${response.data.message}`)
     alert("Link copied!")
     
@@ -38,28 +39,40 @@ export function Dashboard() {
     }
   }, [modalOpen])
 
-  return <div className='main flex'>
+
+
+  return <div className='dashboard flex '>
     <SideBar />
-        <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)}/>  
-        <div className='p-4 bg-slate-200 h-screen w-full'>
-          <div className='buttons flex gap-4 justify-end mb-8'>
-            <Button onClick={() => setModalOpen(true)} startIcon={<PlusIcon />} variant="primary" text="Add content" size='sm'/>  
-            <Button onClick={shareBrain} startIcon={<ShareIcon />} variant="secondary" text="Share Brain" size='sm'/>
-          </div>
-      
-          <div className='flex gap-4 flex-wrap'>
-            <Card type='youtube' title='First video' link="https://www.youtube.com/embed/fG0K3wx64QY"/>  
-            {/* <Card type='twitter' title='First Tweet' link="933354946111705097"/>   */}
 
-            {contents.map(
-              ({title, type, link}) => <Card 
-              type={type} 
-              title={title} 
-              link={link}/>)
-            }
-
-          </div> 
+    <div className='content bg-amber-300 p-4 h-screen w-full'>
+      <div className='buttons flex gap-4 justify-end mb-8'>
+        <Button onClick={() => setModalOpen(true)} startIcon={<PlusIcon />} variant="primary" text="Add content" size='sm'/>  
+        <Button onClick={shareBrain} startIcon={<ShareIcon />} variant="secondary" text="Share Brain" size='sm'/>
       </div>
+  
+      <div className='flex gap-4 flex-wrap'>
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='youtube' title='First video' link="https://www.youtube.com/embed/fG0K3wx64QY"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='youtube' title='First video' link="https://www.youtube.com/embed/fG0K3wx64QY"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+        <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
+
+        {contents.map(
+          ({title, type, link, index}) => <Card
+          key={index} 
+          type={type} 
+          title={title} 
+          link={link}/>)
+        }
+
+      </div> 
+  </div>
 
 
 

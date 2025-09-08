@@ -17,16 +17,5 @@ export function useContent() {
         })
     }
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         refreshFeed();
-    //     }, 10 * 1000)
-
-    //     return () => {
-    //         clearInterval(interval)
-    //     }
-        
-    // }, [])
-
     return { contents, refreshFeed };
 }
