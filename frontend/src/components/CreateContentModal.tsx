@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { Input } from "./InputComponent";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { AnimatePresence, motion } from "motion/react"
 
 interface ModalProps {
     open: boolean;
@@ -45,8 +46,30 @@ export function CreateContentModal({open, onClose}: ModalProps) {
     }
 
     return <div>
-        {open && <div className="w-full h-screen bg-slate-800/60 fixed top-0 left-0 flex items-center justify-center">
-            <div className="modal w-[400px] bg-white p-4 rounded-2xl">
+        <AnimatePresence>
+        {open && <div onClick={onClose} className="w-full h-screen bg-slate-800/60 fixed top-0 left-0 flex items-center justify-center">
+            <motion.div
+                initial={{
+                    opacity: 0,
+                    scale: 0.98,
+                    filter: 'blur(10px)'
+                }}
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                    filter: "blur(0px)"
+                }}
+                exit={{
+                    opacity: 0,
+                    scale: 0.98,
+                    filter: "blur(10px)"
+                }}
+                transition={{
+                    duration: 0.25,
+                    ease: "easeInOut"
+                }}
+                
+                onClick={(e) => e.stopPropagation()} className="modal w-[400px] bg-white p-4 rounded-2xl">
                 <div className="flex justify-end">
                     <div onClick={onClose} className="cursor-pointer"><CrossIcon /></div>
                 </div>
@@ -64,7 +87,9 @@ export function CreateContentModal({open, onClose}: ModalProps) {
                 </div>
 
 
-            </div>
+            </motion.div>
+
         </div>}
+        </AnimatePresence>
     </div>
 }
