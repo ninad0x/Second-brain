@@ -5,7 +5,6 @@ import { ShareIcon } from '../icons/ShareIcon'
 import { Card } from '../components/Card'
 import { CreateContentModal } from '../components/CreateContentModal'
 import { useEffect, useState } from 'react'
-import { SideBar } from '../components/SideBar'
 import { useContent } from '../hooks/useContent'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
@@ -42,7 +41,8 @@ export function Dashboard() {
 
 
   return <div className='dashboard flex '>
-    <SideBar />
+    {/* <SideBar /> */}
+    <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)} />
 
     <div className='content bg-amber-300 p-4 h-screen w-full'>
       <div className='buttons flex gap-4 justify-end mb-8'>
