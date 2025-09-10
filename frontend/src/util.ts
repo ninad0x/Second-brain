@@ -1,8 +1,35 @@
-// const URL = "https://www.youtube.com/watch?v=E_hfgZvMLFU"
-// const URL2 = "https://youtu.be/E_hfgZvMLFU?si=_HlwzY0qR9XPnXhM"
+    // share - https://youtu.be/iPWkjepo2Bc?feature=shared
+    // browser - https://www.youtube.com/watch?v=iPWkjepo2Bc
+    // embed - https://www.youtube.com/embed/iPWkjepo2Bc?si=97M9SKxjPlSXkQgq
+
+    // final - https://www.youtube.com/embed/iPWkjepo2Bc
 
 
 
-// if (URL.match("youtube")) {
-//     console.log("found");
-// }
+export function toYouTubeThumbnail(url: string) {
+  try {
+    const parsed = new URL(url);
+    let videoId;
+
+    if (parsed.hostname === "youtu.be") {
+      videoId = parsed.pathname.slice(1);
+    } else if (parsed.hostname.includes("youtube.com")) {
+      if (parsed.pathname === "/watch") {
+        videoId = parsed.searchParams.get("v");
+      } else if (parsed.pathname.startsWith("/embed/")) {
+        videoId = parsed.pathname.split("/")[2];
+      }
+    }
+
+    if (!videoId) return null;
+
+    return {
+      thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+      link: `https://www.youtube.com/watch?v=${videoId}`,
+    };
+
+  } catch {
+    return null;
+  }
+}
+

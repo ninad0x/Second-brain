@@ -33,6 +33,7 @@
     "react-dom": "^18.3.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.3",
+    "react-social-media-embed": "^2.5.18",
     "react-twitter-embed": "^4.0.4",
     "recharts": "^3.1.2",
     "tailwindcss": "^4.1.11",
