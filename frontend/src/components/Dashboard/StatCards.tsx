@@ -1,18 +1,14 @@
 // import { FiTrendingDown, FiTrendingUp } from 'react-icons/fi';
-import { useContent } from '../../hooks/useContent';
+import type { Content } from '../../hooks/useContent';
 import { YoutubeEmbed } from '../YoutubeEmbed';
 import { XEmbed } from 'react-social-media-embed';
 
 // import { formatYoutubeURL } from '../../util';
 
-export const StatCards = () => {
+export const StatCards = ({contents}:{contents: Content[]}) => {
 
-  const {contents, refreshFeed} = useContent();
-
-  
-  
   // return <div className='col-span-12 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr)))] gap-3 statcard w-full'>
-  return <div className='col-span-12 grid grid-cols-[repeat(auto-fit,minmax(300px,300px)))] gap-4  statcard w-full'>
+  return <div className='px-4 col-span-12 grid grid-cols-[repeat(auto-fit,minmax(300px,300px)))] gap-4  statcard w-full'>
 
     <Card title='Trial video' link='https://www.youtube.com/embed/iPWkjepo2Bc' type='youtube'/>
     <Card title='Trial video' link='https://youtu.be/Nt-AsZh5woE?feature=shared' type='youtube'/>
@@ -21,10 +17,9 @@ export const StatCards = () => {
     {/* <Card type='twitter' title='First Tweet' link="https://x.com/NASA/status/1964688048483963110"/> */}
     {/* <Card title='Trial video' link='https://www.youtube.com/embed/iPWkjepo2Bc' type='youtube'/> */}
     
-    {/* {contents.map((e) => <Card link={e.}/>)} */}
     {contents.map(
-              ({title, type, link, index}) => <Card
-              key={index} 
+              ({title, type, link}) => <Card
+              // key={index} 
               type={type} 
               title={title} 
               link={link}/>)
@@ -33,14 +28,14 @@ export const StatCards = () => {
     </div>
 }
 
-interface cardProps {
-  title: string;
-  link: string; 
-  type?: "twitter" | "youtube";
+// interface cardProps {
+//   title: string;
+//   link: string; 
+//   type?: "twitter" | "youtube";
+// 
+// }
 
-}
-
-const Card = ({title, link, type}: cardProps) => {
+const Card = ({title, link, type}: Content) => {
   return <div className='p-4 h-max bg-white border border-stone-300 rounded-md hover:shadow-lg transition-shadow'>
     <div className='flex flex-col mb-8 justify-between'>
 

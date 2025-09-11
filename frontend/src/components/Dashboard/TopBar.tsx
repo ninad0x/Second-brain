@@ -1,16 +1,11 @@
 import { FiLink, FiPlus } from 'react-icons/fi'
 import { CreateContentModal } from '../CreateContentModal'
 import { useEffect, useState } from 'react';
-import { useContent } from '../../hooks/useContent';
 
-
-export const TopBar = () => {
+export const TopBar = ({refreshFeed}:{refreshFeed:() => void}) => {
 
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const {contents, refreshFeed} = useContent();
     
-  
-
     useEffect(() => {
       console.log(modalOpen);
       if (!modalOpen) {

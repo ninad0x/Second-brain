@@ -1,11 +1,16 @@
 import { TopBar } from './TopBar'
-import { Grid } from './Grid'
+import { StatCards } from './StatCards'
+import { useContent } from '../../hooks/useContent';
 
 export const Dashboard2 = () => {
+
+  const {contents, refreshFeed} = useContent();
+  
   return (
     <div className='bg-white rounded-lg pb-4 shadow h-[200vh]'>
-      <TopBar />
-      <Grid />
+      <TopBar refreshFeed={refreshFeed}/>
+      <StatCards contents={contents}/>
+      
     </div>
   )
 }
