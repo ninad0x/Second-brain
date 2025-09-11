@@ -64,9 +64,9 @@ export function Dashboard() {
         <Card type='twitter' title='First Tweet' link="933354946111705097"/>  
 
         {contents.map(
-          ({title, type, link, index}) => <Card
-          key={index} 
-          type={type} 
+          ({title, link}) => <Card
+          // key={index} 
+          // type={type} 
           title={title} 
           link={link}/>)
         }
