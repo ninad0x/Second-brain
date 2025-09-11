@@ -20,17 +20,11 @@ export function CreateContentModal({open, onClose}: ModalProps) {
 
     async function addContent() {
 
-        console.log("function called");
+        console.log("add content started");
         
         const title = titleRef.current?.value
         const link = linkRef.current?.value;
         const type = typeRef.current?.value;
-        
-        // format youtube URL
-        // const newLink = link?.replace("watch?v=", "embed/").replace("youtu.be","youtube").replace("?si","")
-
-        // https://youtu.be/_P2sM9wQuys?si=fGJxJ5rI0mMHrxsI
-        // https://youtube/_P2sM9wQuys=CIyLNmqOc-E3v2wN
 
         await axios.post(`${BACKEND_URL}/content`, {
             title,
@@ -43,6 +37,8 @@ export function CreateContentModal({open, onClose}: ModalProps) {
         })
 
         onClose();
+        console.log("add content started");
+
     }
 
     return <div>
