@@ -27,14 +27,14 @@ export function CreateContentModal({open, onClose}: ModalProps) {
         const type = typeRef.current?.value;
         
         // format youtube URL
-        const newLink = link?.replace("watch?v=", "embed/").replace("youtu.be","youtube").replace("?si","")
+        // const newLink = link?.replace("watch?v=", "embed/").replace("youtu.be","youtube").replace("?si","")
 
         // https://youtu.be/_P2sM9wQuys?si=fGJxJ5rI0mMHrxsI
         // https://youtube/_P2sM9wQuys=CIyLNmqOc-E3v2wN
 
         await axios.post(`${BACKEND_URL}/content`, {
             title,
-            link: newLink,
+            link,
             type
         },{
             headers: {
@@ -76,7 +76,7 @@ export function CreateContentModal({open, onClose}: ModalProps) {
                 <div className="w-full">
                     <Input reference={titleRef} placeholder={"Title"}/>
                     <Input reference={linkRef} placeholder={"Link"}/>
-                    {/* <Input reference={typeRef} placeholder={"Type"}/> */}
+                    <Input reference={typeRef} placeholder={"Type"}/>
                 </div>
 
                 <p>Type</p>

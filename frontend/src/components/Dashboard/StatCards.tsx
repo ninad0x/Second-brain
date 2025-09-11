@@ -1,25 +1,34 @@
 // import { FiTrendingDown, FiTrendingUp } from 'react-icons/fi';
+import { useContent } from '../../hooks/useContent';
 import { YoutubeEmbed } from '../YoutubeEmbed';
 import { XEmbed } from 'react-social-media-embed';
 
 // import { formatYoutubeURL } from '../../util';
 
 export const StatCards = () => {
+
+  const {contents, refreshFeed} = useContent();
+
+  
+  
   // return <div className='col-span-12 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr)))] gap-3 statcard w-full'>
   return <div className='col-span-12 grid grid-cols-[repeat(auto-fit,minmax(300px,300px)))] gap-4  statcard w-full'>
 
     <Card title='Trial video' link='https://www.youtube.com/embed/iPWkjepo2Bc' type='youtube'/>
     <Card title='Trial video' link='https://youtu.be/Nt-AsZh5woE?feature=shared' type='youtube'/>
     <Card type='twitter' title='First Tweet' link="https://x.com/imVkohli/status/1941896322342387962"/>
-    <Card type='twitter' title='First Tweet' link="https://x.com/FlutterDev/status/1965498424599453894"/>
-    <Card type='twitter' title='First Tweet' link="https://x.com/NASA/status/1964688048483963110"/>
-    <Card title='Trial video' link='https://www.youtube.com/embed/iPWkjepo2Bc' type='youtube'/>
-    <Card title='Trial video' link='https://youtu.be/Nt-AsZh5woE?feature=shared' type='youtube'/>
-    <Card type='twitter' title='First Tweet' link="933354946111705097"/>
-    <Card type='twitter' title='First Tweet' link="https://x.com/FlutterDev/status/1965498424599453894"/>
-    <Card type='twitter' title='First Tweet' link="https://x.com/NASA/status/1964688048483963110"/>
-
-
+    {/* <Card type='twitter' title='First Tweet' link="https://x.com/FlutterDev/status/1965498424599453894"/> */}
+    {/* <Card type='twitter' title='First Tweet' link="https://x.com/NASA/status/1964688048483963110"/> */}
+    {/* <Card title='Trial video' link='https://www.youtube.com/embed/iPWkjepo2Bc' type='youtube'/> */}
+    
+    {/* {contents.map((e) => <Card link={e.}/>)} */}
+    {contents.map(
+              ({title, type, link, index}) => <Card
+              key={index} 
+              type={type} 
+              title={title} 
+              link={link}/>)
+            }
      
     </div>
 }
