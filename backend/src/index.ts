@@ -82,7 +82,7 @@ app.post("/api/v1/content", userMiddlware, async (req, res) => {
     })
    } catch (error) {
     res.status(500).json({
-        message: error
+        message: "no token provided"
     })
    }
 })
