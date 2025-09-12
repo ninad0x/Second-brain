@@ -109,14 +109,25 @@ app.post("/api/v1/delete", userMiddlware, async (req, res) => {
     const userId = req.userId     
     console.log(userId);
 
-    await ContentModel.deleteMany({
-        contentId,
-        userId: userId        
-    })
+    try {
+        console.log(contentId);
+        
+        await ContentModel.deleteOne({
+            _id: contentId,
+            userId: userId        
+        })
+
+        // console.log(res.deletedCount);
+        
+    } catch (error) {
+        res.status(400).json({
+            message: `Error while deleting`
+        })     
+    }
 
     res.status(200).json({
-        message: "Content deleted successfully"
-    })
+        message: `Content deleted successfully`
+    }) 
 
 })
 
